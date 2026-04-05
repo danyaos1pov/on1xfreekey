@@ -8,10 +8,10 @@
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
         body {
-            /* ЯРКИЙ И ЗАМЕТНЫЙ ГРАДИЕНТ */
+            /* ЯРКИЙ И ЗАМЕТНЫЙ ГРАДИЕНТ НА ФОНЕ */
             background: 
-                radial-gradient(circle at 0% 0%, rgba(0, 102, 255, 0.25) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(130, 0, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 0% 0%, rgba(0, 102, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(130, 0, 255, 0.25) 0%, transparent 50%),
                 radial-gradient(circle at 50% 50%, #0a0a12 0%, #000000 100%);
             background-attachment: fixed;
             
@@ -36,14 +36,23 @@
         h1 { font-size: 32px; font-weight: 800; letter-spacing: -1px; }
         .subtitle { color: #888; font-size: 14px; margin-top: 5px; }
 
-        /* БЛОКИ ИЗ ТОГО САМОГО ВАРИАНТА */
+        /* --- СТЕКЛЯННЫЕ БЛОКИ (GLASSMORPHISM) --- */
         .step-card {
-            background: #121214;
-            border: 1px solid #222;
+            /* Полупрозрачный фон */
+            background: rgba(255, 255, 255, 0.03); 
+            /* ЭФФЕКТ МАТОВОГО СТЕКЛА */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); /* Для поддержки в Safari */
+            
+            /* Тонкая обводка для грани стекла */
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            
             border-radius: 24px;
             padding: 24px;
             margin-bottom: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            
+            /* Тень для объема */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4); 
         }
 
         .step-num {
@@ -65,10 +74,11 @@
             display: block;
         }
 
+        /* Кнопки внутри стекла тоже делаем чуть прозрачными */
         .dl-list { display: flex; flex-direction: column; gap: 10px; }
         
         .btn-dl {
-            background: #1c1c1e;
+            background: rgba(255, 255, 255, 0.05);
             color: #fff;
             text-decoration: none;
             padding: 14px 18px;
@@ -77,11 +87,18 @@
             align-items: center;
             font-size: 15px;
             font-weight: 600;
+            border: 1px solid transparent;
+            transition: 0.2s;
         }
 
         .btn-dl i { margin-right: 12px; font-style: normal; font-size: 20px; }
-        .btn-dl:active { background: #2c2c2e; }
+        .btn-dl:active { 
+            background: rgba(255, 255, 255, 0.1); 
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: scale(0.98);
+        }
 
+        /* Главная кнопка остается контрастной */
         .btn-main {
             display: block;
             background: #fff;
@@ -92,15 +109,17 @@
             border-radius: 18px;
             font-weight: 800;
             font-size: 18px;
+            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+            transition: 0.2s;
         }
 
-        .btn-main:active { opacity: 0.8; }
+        .btn-main:active { opacity: 0.8; transform: scale(0.98); }
 
         .hint {
             display: block;
             text-align: center;
             font-size: 13px;
-            color: #666;
+            color: rgba(255, 255, 255, 0.5); /* Чуть светлее hint для стекла */
             margin-top: 15px;
         }
 
@@ -116,9 +135,12 @@
             margin-bottom: 10px;
         }
 
+        /* Стеклянное предупреждение */
         .warning-card {
-            background: rgba(255, 153, 0, 0.1);
-            border: 1px solid rgba(255, 153, 0, 0.2);
+            background: rgba(255, 153, 0, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 153, 0, 0.15);
             border-radius: 20px;
             padding: 16px;
             display: flex;
@@ -140,7 +162,7 @@
         }
 
         .warn-text {
-            color: #FFB347;
+            color: rgba(255, 179, 71, 0.9); /* Более мягкий цвет для стекла */
             font-size: 13px;
             line-height: 1.4;
             font-weight: 500;
@@ -160,7 +182,7 @@
         <span class="step-title">Установите приложение Happ</span>
         <div class="dl-list">
             <a href="https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973" class="btn-dl"><i></i> Скачать для iPhone</a>
-            <a href="https://play.google.com/store/apps/details?id=com.happproxy" class="btn-dl"><i></i> Скачать для Android</a>
+            <a href="https://play.google.com/store/apps/details?id=com.happproxy" class="btn-dl"><i></i> Скачать для Android ></a>
             <a href="https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973" class="btn-dl"><i></i> Скачать для MacOS</a>
             <a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe" class="btn-dl"><i></i> Скачать для Windows</a>
         </div>
@@ -168,19 +190,19 @@
 
     <div class="step-card">
         <span class="step-num">Шаг 2</span>
-        <span class="step-title">Активируйте доступ</span>
+        <span class="step-title">Активируйте ключ доступа</span>
         <a href="https://key.on1xvpn.ru/?url=happ://add/https://se.on1xvpn.ru:2096/sub/gqr5ce70vtvma796" class="btn-main">Активировать</a>
         <span class="hint">Нажмите кнопку и ключ сам добавится в приложение</span>
     </div>
 
     <a href="https://t.me/on1xVPN_bot" class="btn-bot">
-        <span style="margin-right: 8px;">✈️</span> Перейти в нашего БОТА
+        <span style="margin-right: 8px;">✈️</span> Наш БОТ Telegram
     </a>
 
     <div class="warning-card">
         <div class="warn-icon">!</div>
         <div class="warn-text">
-            Скорость бесплатного ключа ограничена до минимума, но Telegram работать должен.
+            Скорость бесплатного ключа ограничена до 1 мбит/с, но Telegram работать должен.
         </div>
     </div>
 </div>
