@@ -6,84 +6,124 @@
     <title>ON1X VPN — Свободный интернет</title>
     <style>
         :root {
-            /* Темная тема */
-            --bg-page: radial-gradient(circle at 50% 0%, #1a103c 0%, #07080d 70%, #000000 100%);
-            --bg-card: #0d0e12;
-            --border-gradient: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(6, 182, 212, 0) 100%);
+            /* Темная тема — Мощный неоновый рассвет сверху */
+            --bg-main: #020205;
+            --top-glow: linear-gradient(180deg, rgba(99, 102, 241, 0.35) 0%, rgba(168, 85, 247, 0.15) 35%, rgba(99, 102, 241, 0.03) 70%, transparent 100%);
+            --grid-color: rgba(99, 102, 241, 0.12);
+            --grid-glow: rgba(168, 85, 247, 0.4);
+            --glass-bg: #090a14; 
+            --glass-border: rgba(99, 102, 241, 0.35); 
+            --glass-border-hover: rgba(99, 102, 241, 0.6);
             --text-title: #ffffff;
-            --text-body: #eff1f5;
-            --text-sub: #66667a;
+            --text-body: #f1f5f9;
+            --text-sub: #6366f1; 
             
-            --btn-main-bg: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%);
-            --btn-main-text: #ffffff;
-            
-            --btn-reg-bg: #14151a;
-            --btn-reg-border: rgba(255, 255, 255, 0.05);
-            --btn-reg-text: #ffffff;
-            
-            --slider-track: #14151a;
-            --slider-thumb: linear-gradient(135deg, #06b6d4, #6366f1);
-            --slider-border: rgba(255, 255, 255, 0.1);
+            --btn-primary-bg: #ffffff;
+            --btn-primary-text: #020205;
+            --slider-track: rgba(255, 255, 255, 0.08);
+            --slider-thumb: #ffffff;
         }
 
         [data-theme="light"] {
             /* Светлая тема */
-            --bg-page: linear-gradient(180deg, #eef2f7 0%, #dfede9 100%);
-            --bg-card: #ffffff;
-            --border-gradient: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0) 100%);
-            --text-title: #000000;
-            --text-body: #1d1d1f;
-            --text-sub: #86868b;
+            --bg-main: #f1f5f9;
+            --top-glow: linear-gradient(180deg, rgba(148, 163, 184, 0.25) 0%, rgba(148, 163, 184, 0.05) 60%, transparent 100%);
+            --grid-color: rgba(148, 163, 184, 0.15);
+            --grid-glow: transparent;
+            --glass-bg: #ffffff;
+            --glass-border: rgba(15, 23, 42, 0.12);
+            --glass-border-hover: rgba(15, 23, 42, 0.3);
+            --text-title: #0f172a;
+            --text-body: #1e293b;
+            --text-sub: #64748b;
             
-            --btn-main-bg: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
-            --btn-main-text: #ffffff;
-            
-            --btn-reg-bg: #f5f5f7;
-            --btn-reg-border: rgba(0, 0, 0, 0.05);
-            --btn-reg-text: #000000;
-            
-            --slider-track: #e5e5ea;
-            --slider-thumb: linear-gradient(135deg, #ff416c, #ff4b2b);
-            --slider-border: rgba(0, 0, 0, 0.05);
+            --btn-primary-bg: #0f172a;
+            --btn-primary-text: #ffffff;
+            --slider-track: rgba(0, 0, 0, 0.06);
+            --slider-thumb: #0f172a;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             -webkit-tap-highlight-color: transparent;
-            transition: background 0.4s ease, border-color 0.4s ease, color 0.3s ease;
+            transition: background 0.4s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
         }
 
         body {
-            background: var(--bg-page) no-repeat fixed;
+            background-color: var(--bg-main);
+            /* Увеличили высоту градиента до 800px */
+            background-image: var(--top-glow);
+            background-repeat: no-repeat;
+            background-size: 100% 800px;
             color: var(--text-body);
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             padding: 40px 24px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Ползунок по центру сверху */
+        /* 3D Сетка на фоне */
+        .grid-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            perspective: 250px;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 30%, transparent 10%, var(--bg-main) 75%);
+            pointer-events: none;
+        }
+
+        .grid-floor {
+            position: absolute;
+            bottom: 0; left: -50%; width: 200%; height: 100%;
+            background-image: 
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: rotateX(75deg);
+            transform-origin: center bottom;
+            animation: gridMove 20s linear infinite;
+        }
+
+        .grid-container::after {
+            content: '';
+            position: absolute;
+            top: 45%; left: 0; width: 100%; height: 2px;
+            background: var(--grid-glow);
+            filter: blur(25px);
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        /* Ползунок темы */
         .theme-container {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin-bottom: 48px;
+            margin-bottom: 44px;
+            z-index: 10;
         }
 
         .theme-switch {
             position: relative;
-            width: 64px;
-            height: 32px;
-            background-color: var(--slider-track);
-            border: 1px solid var(--slider-border);
+            width: 60px;
+            height: 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 30px;
             cursor: pointer;
             padding: 3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .theme-checkbox {
@@ -91,78 +131,78 @@
         }
 
         .theme-handle {
-            width: 24px;
-            height: 24px;
-            background: var(--slider-thumb);
+            width: 22px;
+            height: 22px;
+            background-color: var(--slider-thumb);
             border-radius: 50%;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .theme-checkbox:checked + .theme-switch .theme-handle {
-            transform: translateX(32px);
+            transform: translateX(30px);
         }
 
+        /* Контейнер */
         .container {
             width: 100%;
             max-width: 360px;
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 24px;
+            z-index: 5;
         }
 
         /* Шапка */
         .brand-header {
             text-align: center;
+            margin-bottom: 8px;
         }
 
         .brand-title {
-            font-size: 34px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -1px;
             color: var(--text-title);
-            margin-bottom: 6px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 25px rgba(99, 102, 241, 0.5);
         }
 
         .brand-slogan {
-            font-size: 15px;
-            color: var(--text-sub);
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-size: 13px;
+            color: #8588aa;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 4px;
         }
 
-        /* Карточки с градиентной рамкой */
+        /* Блоки */
         .section-box {
-            position: relative;
-            background-color: var(--bg-card);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 16px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), 
+                        0 1px 0px rgba(255, 255, 255, 0.1) inset; 
         }
 
-        /* Имитация градиентного бордера */
-        .section-box::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 24px;
-            padding: 1px;
-            background: var(--border-gradient);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
+        [data-theme="light"] .section-box {
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
+        }
+
+        .section-box:hover {
+            border-color: var(--glass-border-hover);
         }
 
         .section-title {
-            font-size: 12px;
-            font-weight: 700;
+            font-size: 11px;
+            font-weight: 800;
             color: var(--text-sub);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             padding-left: 8px;
             margin-bottom: 2px;
         }
@@ -183,7 +223,7 @@
         .btn-left {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .btn svg {
@@ -194,34 +234,47 @@
             stroke-linejoin: round;
         }
 
-        /* Кнопка "Подключиться" с чистым градиентом без свечения */
+        /* Главная кнопка */
         .btn-primary {
-            background: var(--btn-main-bg);
-            color: var(--btn-main-text);
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
         }
 
-        /* Остальные кнопки */
+        /* Второстепенные */
         .btn-secondary {
-            background-color: var(--btn-reg-bg);
-            border: 1px solid var(--btn-reg-border);
-            color: var(--btn-reg-text);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-body);
         }
 
-        /* Стрелка справа */
-        .arrow-icon {
-            opacity: 0.3;
+        [data-theme="light"] .btn-secondary {
+            background: #f8fafc;
+            border-color: rgba(0, 0, 0, 0.05);
         }
 
-        /* Эффект клика */
         .btn:active {
             transform: scale(0.97);
-            opacity: 0.9;
+        }
+
+        .btn-secondary:active {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--glass-border);
+        }
+
+        .arrow-icon {
+            opacity: 0.4;
         }
     </style>
 </head>
 <body>
 
-    <!-- Ползунок по центру -->
+    <!-- Задний план Кибер-сетка -->
+    <div class="grid-container">
+        <div class="grid-floor"></div>
+    </div>
+
+    <!-- Ползунок -->
     <div class="theme-container">
         <input type="checkbox" id="themeInput" class="theme-checkbox">
         <label for="themeInput" class="theme-switch">
@@ -237,7 +290,7 @@
             <p class="brand-slogan">Свободный интернет</p>
         </header>
 
-        <!-- Главные действия -->
+        <!-- Главный блок -->
         <main class="section-box">
             <a href="https://t.me/on1xVPN_bot?start=utm_link" class="btn btn-primary" target="_blank">
                 <div class="btn-left">
@@ -256,7 +309,7 @@
             </a>
         </main>
 
-        <!-- Поддержка -->
+        <!-- Блок Поддержки -->
         <section class="section-box">
             <div class="section-title">Поддержка</div>
             
