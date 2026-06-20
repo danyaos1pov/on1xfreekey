@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ON1X VPN — Свободный интернет</title>
+    <title>ON1X VPN — Свободный internet</title>
     <style>
         :root {
             /* Темная тема — Необрутализм (Графит + Токсичный лайм) */
@@ -15,13 +15,15 @@
             --text-body: #f8fafc;
             --text-sub: #94a3b8;
             
-            --btn-primary-bg: #ccff00; /* Яркий акцент */
+            --btn-primary-bg: #ccff00;
+            /* Яркий акцент */
             --btn-primary-text: #000000;
             --btn-secondary-bg: #0f172a;
             --btn-secondary-border: #000000;
             
             --slider-bg: #1e293b;
             --slider-thumb: #ccff00;
+            --icon-color: #ffffff;
         }
 
         [data-theme="light"] {
@@ -38,9 +40,9 @@
             --btn-primary-text: #ffffff;
             --btn-secondary-bg: #f8fafc;
             --btn-secondary-border: #000000;
-            
             --slider-bg: #ffffff;
             --slider-thumb: #000000;
+            --icon-color: #000000;
         }
 
         * {
@@ -73,30 +75,51 @@
 
         .theme-switch {
             position: relative;
-            width: 64px;
-            height: 34px;
+            width: 76px;
+            height: 38px;
             background: var(--slider-bg);
             border: 2px solid var(--card-border);
-            border-radius: 0px; /* Жесткие углы */
+            border-radius: 0px;
+            /* Жесткие углы */
             box-shadow: 3px 3px 0px var(--shadow-color);
             cursor: pointer;
-            padding: 3px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s ease;
         }
 
         .theme-checkbox {
             display: none;
         }
 
+        .switch-icon {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: var(--icon-color);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            z-index: 1;
+            transition: stroke 0.3s ease;
+            margin: 0 4px;
+        }
+
         .theme-handle {
-            width: 24px;
-            height: 24px;
+            position: absolute;
+            left: 4px;
+            width: 26px;
+            height: 26px;
             background-color: var(--slider-thumb);
             border: 2px solid var(--card-border);
             transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            z-index: 2;
         }
 
         .theme-checkbox:checked + .theme-switch .theme-handle {
-            transform: translateX(30px);
+            transform: translateX(38px);
         }
 
         /* Контейнер */
@@ -214,44 +237,42 @@
 </head>
 <body>
 
-    <!-- Ползунок -->
     <div class="theme-container">
         <input type="checkbox" id="themeInput" class="theme-checkbox">
         <label for="themeInput" class="theme-switch">
+            <svg class="switch-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             <div class="theme-handle"></div>
+            <svg class="switch-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         </label>
     </div>
 
     <div class="container">
         
-        <!-- Шапка -->
         <header class="brand-header">
-            <h1 class="brand-title">ON1X VPN</h1>
+             <h1 class="brand-title">ON1X VPN</h1>
             <p class="brand-slogan">Свободный интернет</p>
         </header>
 
-        <!-- Главный блок -->
         <main class="section-box">
             <a href="https://t.me/on1xVPN_bot?start=utm_link" class="btn btn-primary" target="_blank">
                 <div class="btn-left">
-                    <svg width="20" height="20" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                     <svg width="20" height="20" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                     <span>ПОДКЛЮЧИТЬСЯ</span>
                 </div>
                 <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+             </a>
             
             <a href="https://t.me/ON1Xvpn" class="btn btn-secondary" target="_blank">
                 <div class="btn-left">
                     <svg width="20" height="20" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                    <span>НАШ КАНАЛ</span>
+                     <span>НАШ КАНАЛ</span>
                 </div>
                 <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
         </main>
 
-        <!-- Блок Поддержки -->
         <section class="section-box">
-            <div class="section-title">Поддержка</div>
+             <div class="section-title">Поддержка</div>
             
             <a href="https://t.me/ON1Xvpn_support" class="btn btn-secondary" target="_blank">
                 <div class="btn-left">
@@ -261,11 +282,11 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
             
-            <a href="https://vk.com/on1xvpn" class="btn btn-secondary" target="_blank">
+             <a href="https://vk.com/on1xvpn" class="btn btn-secondary" target="_blank">
                 <div class="btn-left">
                     <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5c-3.04 0-5.5-2.46-5.5-5.5s2.46-5.5 5.5-5.5 5.5 2.46 5.5 5.5-2.46 5.5-5.5 5.5z"/></svg>
                     <span>ВКОНТАКТЕ</span>
-                </div>
+                 </div>
                 <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
         </section>
@@ -274,7 +295,6 @@
 
     <script>
         const themeInput = document.getElementById('themeInput');
-        
         const savedTheme = localStorage.getItem('theme') || 'dark';
         if (savedTheme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
@@ -290,7 +310,7 @@
                 localStorage.setItem('theme', 'light');
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
+                 localStorage.setItem('theme', 'dark');
             }
         });
     </script>
