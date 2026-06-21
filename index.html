@@ -212,6 +212,12 @@
             stroke-linejoin: round;
         }
 
+        /* Фикс для заливки иконки ВК */
+        .btn svg.vk-icon {
+            fill: currentColor !important;
+            stroke: none !important;
+        }
+
         /* Эффект нажатия (кнопка физически вдавливается) */
         .btn:active {
             transform: translate(2px, 2px);
@@ -242,7 +248,8 @@
         <label for="themeInput" class="theme-switch">
             <svg class="switch-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             <div class="theme-handle"></div>
-            <svg class="switch-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="switch-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line 
+            x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         </label>
     </div>
 
@@ -253,11 +260,12 @@
             <p class="brand-slogan">Свободный интернет</p>
         </header>
 
+  
         <main class="section-box">
             <a href="https://t.me/on1xVPN_bot?start=utm_link" class="btn btn-primary" target="_blank">
                 <div class="btn-left">
                      <svg width="20" height="20" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                    <span>ПОДКЛЮЧИТЬСЯ</span>
+                     <span>ПОДКЛЮЧИТЬСЯ</span>
                 </div>
                 <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
              </a>
@@ -269,6 +277,14 @@
                 </div>
                 <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
+
+            <a href="https://www.instagram.com/0n1xvpn" class="btn btn-secondary" target="_blank">
+                <div class="btn-left">
+                    <svg width="20" height="20" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                     <span>ВАШ INSTAGRAM</span>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
         </main>
 
         <section class="section-box">
@@ -276,7 +292,7 @@
             
             <a href="https://t.me/ON1Xvpn_support" class="btn btn-secondary" target="_blank">
                 <div class="btn-left">
-                    <svg width="20" height="20" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     <span>TELEGRAM</span>
                 </div>
                 <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -284,7 +300,7 @@
             
              <a href="https://vk.com/on1xvpn" class="btn btn-secondary" target="_blank">
                 <div class="btn-left">
-                    <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5c-3.04 0-5.5-2.46-5.5-5.5s2.46-5.5 5.5-5.5 5.5 2.46 5.5 5.5-2.46 5.5-5.5 5.5z"/></svg>
+                    <svg class="vk-icon" width="20" height="20" viewBox="0 0 24 24"><path d="M15.073 2H8.927C3.627 2 2 3.627 2 8.927v6.146C2 20.373 3.627 22 8.927 22h6.146C20.373 22 22 20.373 22 15.073V8.927C22 3.627 20.373 2 15.073 2zm3.324 13.064c.541.527 1.11 1.025 1.605 1.579.43.483.824.996 1.155 1.554.128.217.228.452.22.716a.65.65 0 0 1-.223.473c-.198.156-.453.18-.694.183h-2.903c-.347.01-.663-.105-.918-.337-.411-.373-.775-.794-1.155-1.196-.24-.253-.473-.513-.755-.716-.316-.228-.616-.168-.809.16a1.95 1.95 0 0 0-.294.887c-.046.544-.397.94-.925.992-.44.043-.883.023-1.32-.016a7.2 7.2 0 0 1-3.69-1.547 11.082 11.082 0 0 1-3.21-3.41c-1.168-1.958-2.022-4.062-2.827-6.202-.102-.271-.051-.497.18-.667.194-.143.43-.163.66-.164h2.9c.28.006.513.14.654.394.49 1.037 1.077 2.02 1.776 2.936.216.283.454.552.748.751.27.182.49.103.606-.192.1-.252.148-.517.165-.785a4.7 4.7 0 0 0-.154-1.573c-.1-.455-.426-.704-.848-.807-.215-.053-.186-.145-.078-.26.236-.25.592-.358.932-.367h3.697c.437.06.666.275.741.714.153.896.108 1.794-.038 2.684-.047.288-.137.568-.145.86-.02.724.381 1.066.864.636.43-.383.74-.863 1.045-1.353.722-1.156 1.282-2.392 1.777-3.663.097-.248.272-.405.542-.423 1.026-.005 2.052-.002 3.078-.002.083 0 .167.005.25.016.324.046.505.234.453.565-.133.844-.61 1.554-1.078 2.27a19.78 19.78 0 0 1-1.96 2.502c-.378.397-.394.57-.024.97.352.383.738.736 1.11 1.099z"/></svg>
                     <span>ВКОНТАКТЕ</span>
                  </div>
                 <svg width="16" height="16" viewBox="0 0 24 24" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -310,7 +326,7 @@
                 localStorage.setItem('theme', 'light');
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                 localStorage.setItem('theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             }
         });
     </script>
